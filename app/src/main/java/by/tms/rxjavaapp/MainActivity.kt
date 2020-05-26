@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
 
 const val TAG = "TAG"
-class MainActivity : BaseActivity() {
+class MainActivity : AppCompatActivity() {
     private val compositeDisposable = CompositeDisposable()
     private val startList = ArrayList<Country>()
     private val searchList = ArrayList<Country>()
