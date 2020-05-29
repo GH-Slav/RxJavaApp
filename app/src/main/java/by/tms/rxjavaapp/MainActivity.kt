@@ -1,12 +1,10 @@
 package by.tms.rxjavaapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.tms.rxjavaapp.retrofit.Country
-import by.tms.rxjavaapp.retrofit.CountryApiProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -14,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
 
 const val TAG = "TAG"
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
     private val compositeDisposable = CompositeDisposable()
     private val startList = ArrayList<Country>()
     private val searchList = ArrayList<Country>()
@@ -23,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val dispose = CountryApiProvider.provideApi().getSummary()
+        val dispose = retrofitCovid.getSummary()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .map {
